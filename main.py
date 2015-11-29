@@ -6,13 +6,13 @@ neurone = neurone()
 # jeu d'apprentissage
 print ("---------APPRENTISSAGE---------")
 inputs = [1,0,1,1]
-neurone.learningProcess(inputs, 0)
+neurone.reasonProcess(inputs, 0)
 inputs = [1,1,1,1]
-neurone.learningProcess(inputs, 1)
+neurone.reasonProcess(inputs, 1)
 inputs = [0,1,0,1]
-neurone.learningProcess(inputs, 0)
+neurone.reasonProcess(inputs, 0)
 inputs = [1,1,0,1]
-neurone.learningProcess(inputs, 0)
+neurone.reasonProcess(inputs, 0)
 print ''
 
 # jeu d'essai
