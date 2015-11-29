@@ -1,26 +1,30 @@
 from neurone import neurone
 
-# Instancier un neuronne
-neuroneCalcul = neurone()
+# Instancier un neurone
+neurone = neurone()
 
 # jeu d'apprentissage
-tab = [1,0,1,1]
-neuroneCalcul.processusApprend(tab, 0)
-tab = [1,1,1,1]
-neuroneCalcul.processusApprend(tab, 1)
-tab = [0,1,0,1]
-neuroneCalcul.processusApprend(tab, 0)
-tab = [1,1,0,1]
-neuroneCalcul.processusApprend(tab, 0)
+print ("---------APPRENTISSAGE---------")
+inputs = [1,0,1,1]
+neurone.learningProcess(inputs, 0)
+inputs = [1,1,1,1]
+neurone.learningProcess(inputs, 1)
+inputs = [0,1,0,1]
+neurone.learningProcess(inputs, 0)
+inputs = [1,1,0,1]
+neurone.learningProcess(inputs, 0)
+print ''
 
 # jeu d'essai
-tab = [1,1,1,1]
-neuroneCalcul.processus(tab)
-tab = [0,1,1,1]
-neuroneCalcul.processus(tab)
-tab = [0,0,1,1]
-neuroneCalcul.processus(tab)
-tab = [0,0,0,1]
-neuroneCalcul.processus(tab)
-tab = [0,0,0,0]
-neuroneCalcul.processus(tab)
+print ("---------ESSAIS---------")
+inputs = [1,1,1,1]
+neurone.reasonProcess(inputs)
+inputs = [0,1,1,1]
+neurone.reasonProcess(inputs)
+inputs = [0,0,1,1]
+neurone.reasonProcess(inputs)
+inputs = [0,0,0,1]
+neurone.reasonProcess(inputs)
+inputs = [0,0,0,0]
+neurone.reasonProcess(inputs)
+print ''
