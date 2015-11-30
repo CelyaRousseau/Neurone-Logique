@@ -101,14 +101,20 @@ class neurone:
             # Ainsi, le neurone va pouvoir apprendre si la sortie qu'il donne est mauvaise
             if self.expected != -1:
                 self.adjustWeights()
+                self.display(weightedSum)
+            else:
+                self.display(-1)
             
-            self.display(weightedSum)        
+                    
 
      # Fonction utilitaire qui permet d'afficher des informations a chaque fois que l'on lance notre neurone
     def display(self, weightedSum) :
         print ''
         print "entrees = %s" %(self.inputs)
-        print "poids = %s" %(self.weights)
-        print "somme ponderee = %s" %(weightedSum)
+        if weightedSum != -1:
+            print "poids = %s" %(self.weights)
+            print "somme ponderee = %s" %(weightedSum)
         print "sortie = %s" %(self.output)
 
+    def getLastOutput(self):
+        return self.output
