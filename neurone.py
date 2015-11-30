@@ -7,7 +7,7 @@
 class neurone:
 
     # Constructeur de la classe
-    def __init__(self):
+    def __init__(self, seuil = 0):
         # nombre d'entrees du neurone
         self.inputLength = 0
         # flag qui permet de savoir si le neurone est deja initialise ou bien si l'on vient de le creer (#recursivite)
@@ -18,6 +18,12 @@ class neurone:
         self.inputs = []
         # Tableau des poids qui correspondent aux entrees du neurone
         self.weights = []
+        # Tableau de toutes les sorties (hors apprentissage)
+        self.outputs = []
+        # Permet d'afficher ou non les resultats pendant l'apprentissage
+        self.debug = 1
+        # Defini le seuil de la fonction seuil du neurone
+        self.seuil = seuil
 
     # Ajuste les poids des entrees (uniquement si la sortie est mauvaise)
     # On parcoure nos entrees et pour chaque on verifie si elle correspond a la sortie
@@ -29,16 +35,18 @@ class neurone:
             # Pour chaque entree, on verifie si elle correspond a la sortie
             for i in range(0, self.inputLength):
                 if self.inputs[i]*self.weights[i] == self.expected:
-                    self.weights[i] += 1
+                    self.weights[i] += 0.1
                 else:
-                    self.weights[i] -= 1
+                    self.weights[i] += -0.1
+                self.weights[i] = round(self.weights[i], 2)
+
 
     # Determine la sortie du neurone (fonction seuil)
     # Si la somme ponderee est superieure a 0, sortie = 1
     # Sinon, sortie = 0
     def threshold(self, value):
-        # Function seuil
-        if value > 0:
+        # Fonction seuil
+        if value > self.seuil:
             return 1
         else :
             return 0
@@ -46,6 +54,7 @@ class neurone:
     # Calcul la somme ponderee en fonction des entrees du neurone
     # Pour chaque entree, on multiplie sa valeur par le poids qui lui correspond
     # Et on additionne les resultats
+    # Les poids n'ont pas de limite de valeur : ils s'ajustent sans limite.
     def weightedSum(self, inputs, weights):
         # Somme ponderee 
         weightedSum = 0
@@ -82,10 +91,10 @@ class neurone:
         self.inputs = inputs
         self.inputLength = len(inputs)
         for i in range(0, self.inputLength):
-            self.weights.append(1)
+            self.weights.append(1.0)
 
     # Lance le processus de raisonnement du neurone
-    # Permet de donner les entrees au neurone et la sortie attendue si on l'a
+    # Permet de donner les entrees au neurone et la sortie attendue si le neurone est en mode apprentissage
     def reasonProcess(self, inputs, expected = -1):
         # si la verification du nombre d'entrees est ok, on peut continuer
         if self.checkInputs(inputs):
@@ -101,9 +110,11 @@ class neurone:
             # Ainsi, le neurone va pouvoir apprendre si la sortie qu'il donne est mauvaise
             if self.expected != -1:
                 self.adjustWeights()
-                self.display(weightedSum)
+                if self.debug == 1:
+                    self.display(weightedSum)
             else:
                 self.display(-1)
+                self.outputs.append(self.output)
             
                     
 
@@ -116,5 +127,21 @@ class neurone:
             print "somme ponderee = %s" %(weightedSum)
         print "sortie = %s" %(self.output)
 
+    # Retourne la derniere sortie du neurone
     def getLastOutput(self):
         return self.output
+
+    # Retourne toutes les sorties non issues de l'apprentissage
+    def getAllOutputs(self):
+        return self.outputs
+
+    # Permet de definir la valeur du debug (1=afficher, 0=masquer)
+    def setDebug(self, debug):
+        if debug == 1 or debug == 0:
+            self.debug = debug
+            return 1
+        return 0
+
+    # Permet d'afficher les poids du neurone
+    def showWeight(self):
+        print ("poids = %s" % (self.weights))
