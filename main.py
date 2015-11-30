@@ -1,51 +1,30 @@
 from neurone import neurone
 
-# Instancier un neuronne
-# neuroneAnd a un jeu d'apprentissage pour la porte AND
-neuroneAnd = neurone()
-neuroneOr = neurone()
+# Instancier un neurone
+neurone = neurone()
 
+# jeu d'apprentissage
+print ("---------APPRENTISSAGE---------")
+inputs = [1,0,1,1]
+neurone.reasonProcess(inputs, 0)
+inputs = [1,1,1,1]
+neurone.reasonProcess(inputs, 1)
+inputs = [0,1,0,1]
+neurone.reasonProcess(inputs, 0)
+inputs = [1,1,0,1]
+neurone.reasonProcess(inputs, 0)
+print ''
 
-# jeu d'apprentissage AND
-tab = [1,0,1,1]
-neuroneAnd.processusApprend(tab, 0)
-tab = [1,1,1,1]
-neuroneAnd.processusApprend(tab, 1)
-tab = [0,1,0,1]
-neuroneAnd.processusApprend(tab, 0)
-tab = [1,1,0,1]
-neuroneAnd.processusApprend(tab, 0)
-# jeu d'essai AND
-tab = [1,1,1,1]
-neuroneAnd.processus(tab)
-tab = [0,1,1,1]
-neuroneAnd.processus(tab)
-tab = [0,0,1,1]
-neuroneAnd.processus(tab)
-tab = [0,0,0,1]
-neuroneAnd.processus(tab)
-tab = [0,0,0,0]
-neuroneAnd.processus(tab)
-
-
-
-# jeu d'apprentissage OR
-tab = [1,0,1,1]
-neuroneOr.processusApprend(tab, 1)
-tab = [1,1,1,1]
-neuroneOr.processusApprend(tab, 1)
-tab = [0,1,0,1]
-neuroneOr.processusApprend(tab, 1)
-tab = [0,0,0,0]
-neuroneOr.processusApprend(tab, 0)
-# jeu d'essai OR
-tab = [1,1,1,1]
-neuroneOr.processus(tab)
-tab = [0,1,1,1]
-neuroneOr.processus(tab)
-tab = [0,0,1,1]
-neuroneOr.processus(tab)
-tab = [0,0,0,1]
-neuroneOr.processus(tab)
-tab = [0,0,0,0]
-neuroneOr.processus(tab)
+# jeu d'essai
+print ("---------ESSAIS---------")
+inputs = [1,1,1,1]
+neurone.reasonProcess(inputs)
+inputs = [0,1,1,1]
+neurone.reasonProcess(inputs)
+inputs = [0,0,1,1]
+neurone.reasonProcess(inputs)
+inputs = [0,0,0,1]
+neurone.reasonProcess(inputs)
+inputs = [0,0,0,0]
+neurone.reasonProcess(inputs)
+print ''
