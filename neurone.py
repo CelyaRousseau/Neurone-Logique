@@ -4,24 +4,20 @@
 # qui retourne 1 si le resultat de la somme est superieur a 0.
 # Ce neuronne est capable d'apprendre lorsque la second parametre de la fonction processus
 # est la sortie attendue.
-class neurone:
-
-    # nombre d'entrees du neuronne
-    longueur = 0
-    # flag qui permet de savoir si le nombre d'entrees est definit
-    first = 0
-    # Valeur de la sortie du neuronne
-    result = 0
-    # Tableau des valeurs des entrees du neurone
-    entreeTab = []
-    # Tableau des poids qui correspondent aux entrees du neurone
-    poidsTab = []
+class neurone:    
 
     # Constructeur de la classe
     def __init__(self):
-        longueur = 0
-        first = 0
-        result = 0
+        # nombre d'entrees du neuronne
+        self.longueur = 0
+        # flag qui permet de savoir si le nombre d'entrees est definit
+        self.first = 0
+        # Valeur de la sortie du neuronne
+        self.result = 0
+        # Tableau des valeurs des entrees du neurone
+        self.entreeTab = []
+        # Tableau des poids qui correspondent aux entrees du neurone
+        self.poidsTab = []
 
     # Ajuste les poids des entrees (uniquement si la sortie est mauvaise)
     # On parcoure nos entrees et pour chaque on verifie si elle correspond a la sortie
